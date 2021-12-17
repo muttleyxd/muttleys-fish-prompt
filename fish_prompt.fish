@@ -73,7 +73,7 @@ function _get_unstaged
         set modified (math $modified + 1)
       case " D*"
         set deleted (math $deleted + 1)
-      case "??*"
+      case "\?\? *"
         set new (math $new + 1)
     end
   end
@@ -117,7 +117,7 @@ function _git_dirty_info
 end
 
 function _git_ahead_behind
-  set -l commits (command git rev-list --left-right '@{upstream}...HEAD' ^/dev/null)
+  set -l commits (command git rev-list --left-right '@{upstream}...HEAD' ^/dev/null 2>/dev/null)
   if [ $status != 0 ]
     return
   end
